@@ -16,6 +16,10 @@ namespace ByteBank.SistemaAgencia
         {
             TesteSort();
 
+            List<string> nomes = new List<string>() { "janeiro", "aril" };
+
+            nomes.OrderBy(mes =>  mes);
+
             Console.ReadLine();
         }
 
@@ -25,17 +29,30 @@ namespace ByteBank.SistemaAgencia
             {
                 new ContaCorrente(111,11111),
                 new ContaCorrente(444,99999),
+                null,
                 new ContaCorrente(555,55555),
+                null,
                 new ContaCorrente(222,22222)
             };
 
             //PRECISO DA INTERFACE ICOMPARABLE PARA COMPARAR UMA CLASSE
-            contas.Sort();
-
+            //contas.Sort();
+            //COMPARANDO PELA AGÊNCIA
             //contas.Sort(new ComparadorContaCorrentePorAgencia());
+            var contas1 = contas.OrderBy(c => {
+                if (c == null)
+                    return int.MaxValue;
 
-            foreach (var conta in contas)
-                Console.WriteLine($"Conta número {conta.Numero}, ag. {conta.Agencia}");
+                return c.Numero;
+            });
+
+            foreach (var conta in contas1)
+            {
+                if(conta == null)
+                    Console.WriteLine("Conta nula");
+                else
+                    Console.WriteLine($"Conta número {conta.Numero}, ag. {conta.Agencia}");
+            }
         }
 
         static void TesteIdades()
