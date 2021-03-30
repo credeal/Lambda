@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using ByteBank.Modelos;
 using ByteBank.Modelos.Funcionarios;
+using ByteBank.SistemaAgencia.Comparador;
 using ByteBank.SistemaAgencia.Extensoes;
 
 namespace ByteBank.SistemaAgencia
@@ -13,7 +14,7 @@ namespace ByteBank.SistemaAgencia
     {
         static void Main(string[] args)
         {
-
+            TesteSort();
 
             Console.ReadLine();
         }
@@ -23,12 +24,15 @@ namespace ByteBank.SistemaAgencia
             var contas = new List<ContaCorrente>()
             {
                 new ContaCorrente(111,11111),
-                new ContaCorrente(444,44444),
+                new ContaCorrente(444,99999),
                 new ContaCorrente(555,55555),
                 new ContaCorrente(222,22222)
             };
 
+            //PRECISO DA INTERFACE ICOMPARABLE PARA COMPARAR UMA CLASSE
             contas.Sort();
+
+            //contas.Sort(new ComparadorContaCorrentePorAgencia());
 
             foreach (var conta in contas)
                 Console.WriteLine($"Conta número {conta.Numero}, ag. {conta.Agencia}");
