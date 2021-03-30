@@ -124,6 +124,11 @@ namespace ByteBank.Modelos
             return Numero == outraConta.Numero && Agencia == outraConta.Agencia;
         }
 
+        public static  void EscreverNaTela(this object objeto)
+        {
+            Console.WriteLine(objeto);
+        }
+
     }
 
 }
