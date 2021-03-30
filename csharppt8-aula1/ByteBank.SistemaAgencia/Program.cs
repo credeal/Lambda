@@ -16,9 +16,6 @@ namespace ByteBank.SistemaAgencia
         {
             TesteSort();
 
-            List<string> nomes = new List<string>() { "janeiro", "aril" };
-
-            nomes.OrderBy(mes =>  mes);
 
             Console.ReadLine();
         }
@@ -39,12 +36,15 @@ namespace ByteBank.SistemaAgencia
             //contas.Sort();
             //COMPARANDO PELA AGÊNCIA
             //contas.Sort(new ComparadorContaCorrentePorAgencia());
-            var contas1 = contas.OrderBy(c => {
-                if (c == null)
-                    return int.MaxValue;
+            //var contas1 = contas.OrderBy(c => {
+            //    if (c == null)
+            //        return int.MaxValue;
 
-                return c.Numero;
-            });
+            //    return c.Numero;
+            //});
+
+            var contas1 = contas.Where(c => c != null)
+                                .OrderBy(c => c.Numero);
 
             foreach (var conta in contas1)
             {
